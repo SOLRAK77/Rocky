@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccesor 
+@using Rocky.Utility
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,6 +39,22 @@
                                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Create Admin User</a>
                             </div>
                         </li>
+                        <li>
+                            @if (httpContextAccesor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                            {
+                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    @{
+                                        var count = httpContextAccesor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count;
+                                    }
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> (0)
+                                </a>                                    }
+                            </li>
                     </ul>
                 </div>
             </div>

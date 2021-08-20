@@ -2,7 +2,7 @@
 
 <div class="">
     <form method="post">
-
+        <input asp-for="@Model.Product.Id" hidden />
         <div class="container backgroundWhite pt-4">
             <div class="card" style="border:1px solid #000000; ">
                 <div class="card-header bg-dark text-light ml-0 row container" style="border-radius: 0px;">
@@ -43,11 +43,12 @@
                         <div class="col-12 col-md-6 ">
                             @if (Model.ExistsInCar)
                             {
-                                <a asp-action="removeFromCar" asp-route-Id="@Model.Product.Id" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Remove from Cart</a>
-
+                                <a asp-action="removeFromCar" asp-route-Id="@Model.Product.Id" class="btn btn-warning btn-square form-control btn-lg" style="height:50px;">Remove from Cart</a>
                             }
-                            <button type="submit" class="btn btn-info form-control btn-lg" style="height:50px;">Add to Cart</button>
-
+                            else
+                            {
+                                <button type="submit" class="btn btn-info form-control btn-lg" style="height:50px;">Add to Cart</button>
+                            }
                         </div>
                     </div>
                 </div>
